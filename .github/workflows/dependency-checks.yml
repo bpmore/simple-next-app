@@ -11,6 +11,8 @@ jobs:
   validate:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
+    env:
+      NEXT_PUBLIC_BASE_PATH: /simple-next-app
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -22,4 +24,5 @@ jobs:
       - name: Dependency audit (blocks critical findings)
         run: npm audit --audit-level=critical
       - run: npm run build
+      - run: npm test
       - run: npm run lint
